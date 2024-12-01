@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>Welcome to the Book Recommendation App</h1>
+    
+    <!-- Book Recommendation Form -->
+    <h2>Get Book Recommendations</h2>
+    <form method="POST" action="/index">
+        <label for="title">Enter a Book Title:</label>
+        <input type="text" id="title" name="title" required>
+        <button type="submit">Get Recommendations</button>
+    </form>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if books %}
+        <h2>Recommended Books</h2>
+        <div>
+            {% for book in books %}
+                <div>
+                    <img src="{{ book.cover_url }}" alt="Thumbnail" width="100" height="150">
+                    <h3>{{ book.title }}</h3>
+                    <p><strong>Author:</strong> {{ book.authors | join(", ") }}</p>
+                    <p><strong>Category:</strong> {{ book.categories }}</p>
+                    <p><strong>Rating:</strong> {{ book.average_rating }} (Rated by {{ book.ratings_count }} people)</p>
+                    <p><strong>Description:</strong> {{ book.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Genre Selection Form -->
+    <h2>Or Browse by Genre</h2>
+    <form id="genreForm">
+        <label for="genre">Select Genre:</label>
+        <select id="genre" name="genre" required>
+            <option value="" disabled selected>-- Select a Genre --</option>
+            <option value="fiction">Fiction</option>
+            <option value="mystery">Mystery</option>
+            <option value="science">Science</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="biography">Biography</option>
+            <option value="history">History</option>
+            <option value="romance">Romance</option>
+        </select>
+        <button type="button" onclick="redirectToGenre()">Browse</button>
+    </form>
+
+    <script>
+        function redirectToGenre() {
+            const genre = document.getElementById('genre').value;
+            if (genre) {
+                // Redirect to the selected genre's page
+                window.location.href = `/genre/${genre}`;
+            } else {
+                alert('Please select a genre before browsing!');
+            }
+        }
+    </script>
+
+</body>
+</html>
+

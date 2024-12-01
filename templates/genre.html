@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books by Genre</title>
+    <style>
+        .book { margin-bottom: 20px; }
+        .description { display: none; margin-top: 10px; font-style: italic; }
+        .toggle-button { cursor: pointer; color: blue; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Books by Selected Genre</h1>
+    {% if books %}
+        <div class="book-list">
+            {% for book in books %}
+                <div class="book">
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Authors:</strong> {{ book.authors | join(', ') }}</p>
+                    <img src="{{ book.cover_url }}" alt="Cover" style="width:100px;height:150px;">
+                    
+                    <!-- Toggle Button for Description -->
+                    <span class="toggle-button" onclick="toggleDescription('{{ book.key }}')">Show Description</span>
+                    
+                    <!-- Book Description -->
+                    <div id="desc-{{ book.key }}" class="description">
+                        <p>{{ book.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No books found in this genre.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to Homepage</a>
+
+    <script>
+        function toggleDescription(bookKey) {
+            // Toggle the display of the book's description
+            const description = document.getElementById('desc-' + bookKey);
+            const toggleButton = description.previousElementSibling;
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+                toggleButton.textContent = "Hide Description";
+            } else {
+                description.style.display = "none";
+                toggleButton.textContent = "Show Description";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two books per row */
+            gap: 20px;
+        }
+        .book {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 20px;
+        }
+        .book img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .details h2 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+        }
+        .details p {
+            margin: 5px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+        .details p strong {
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .book-grid {
+                grid-template-columns: 1fr; /* Single column for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Books</h1>
+        <div class="book-grid">
+            {% if books %}
+                {% for book in books %}
+                <div class="book">
+                    <img src="{{ book.thumbnail }}" alt="Thumbnail">
+                    <div class="details">
+                        <h2>{{ book.title }}</h2>
+                        <p><strong>Author:</strong> {{ book.authors }}</p>
+                        <p><strong>Category:</strong> {{ book.categories }}</p>
+                        <p><strong>Rating:</strong> {{ book.average_rating }} (Rated by {{ book.ratings_count }} people)</p>
+                        <p><strong>Description:</strong> {{ book.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No recommendations found for the entered title.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+

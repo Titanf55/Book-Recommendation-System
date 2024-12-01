@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Genre Search</title>
+</head>
+<body>
+    <h1>Choose a Genre</h1>
+    <!-- Links for Genre Selection -->
+    <a href="{{ url_for('genre_books', genre='fiction') }}">Fiction</a><br>
+    <a href="{{ url_for('genre_books', genre='mystery') }}">Mystery</a><br>
+    <a href="{{ url_for('genre_books', genre='science') }}">Science</a><br>
+    <a href="{{ url_for('genre_books', genre='fantasy') }}">Fantasy</a><br>
+    <a href="{{ url_for('genre_books', genre='biography') }}">Biography</a><br>
+    <a href="{{ url_for('genre_books', genre='history') }}">History</a><br>
+    <a href="{{ url_for('genre_books', genre='romance') }}">Romance</a><br>
+</body>
+</html>
+
