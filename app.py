@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app) 
 app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
-df = pd.read_csv(r'C:\Users\PC\Desktop\dataset\data.csv')
+df = pd.read_csv('data.csv')
 
 # Process the data (drop nulls, remove unnecessary columns, etc.)
 df = df.drop(columns=['isbn13', 'isbn10','subtitle','published_year','num_pages'], errors='ignore')
