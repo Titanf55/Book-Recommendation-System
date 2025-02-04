@@ -4,8 +4,7 @@ from flask_cors import CORS
 import requests
 app = Flask(__name__)
 CORS(app) 
-app.secret_key = "7673dfdd717eaaafc9cbe16286f477d7300a0c58bd888d203707294e6a5adcad"
-
+app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 df = pd.read_csv(r'C:\Users\PC\Desktop\dataset\data.csv')
 
 # Process the data (drop nulls, remove unnecessary columns, etc.)
