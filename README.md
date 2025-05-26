@@ -1,6 +1,6 @@
 # SE_Project App Link
 
-[🔗 Click here to view the live app!](https://book-recommendation-system-ygo5.onrender.com)
+🔗 [Click here to view the live app!](https://book-recommendation-system-ygo5.onrender.com)
 
 ## About
 This project is a **Book Recommendation System** .
